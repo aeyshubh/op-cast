@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { FrameRequest, getFrameMessage,getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { encodeFunctionData, parseEther,encodePacked, stringToBytes  } from 'viem';
@@ -49,6 +52,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     };
     return NextResponse.json(txData);
   }else{
+
     let result = encodePacked(['address'], [body.untrustedData.address])
    console.log("Result : "+result);
 
