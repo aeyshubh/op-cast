@@ -32,7 +32,7 @@ console.log("Message : "+JSON.stringify(message));
   }
 
   if(body.untrustedData.buttonIndex ==1){
-    let result = encodePacked(['address'], [message.connectedAddress as string])
+    let result = encodePacked(['address'], [message.connectedAddress as any])
     const data = encodeFunctionData({
       abi: interchainToken,
       functionName: 'interchainTransfer',
@@ -51,7 +51,7 @@ console.log("Message : "+JSON.stringify(message));
     };
     return NextResponse.json(txData);
   }else{
-    let result = encodePacked(['address'], [message.connectedAddress as string])
+    let result = encodePacked(['address'], [message.connectedAddress as any])
 
     const data = encodeFunctionData({
       abi: interchainToken,
