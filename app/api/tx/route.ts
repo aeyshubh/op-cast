@@ -1,39 +1,38 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 
-import { FrameRequest, getFrameMessage,getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
+
+import { FrameRequest,getFrameHtmlResponse } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { encodeFunctionData, parseEther,encodePacked, stringToBytes  } from 'viem';
 import { avalanche,baseSepolia,avalancheFuji, optimismSepolia,base, optimism } from 'viem/chains';
 import interchainToken from '../../_contracts/interchainToken';
-import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
+import { getFarcasterUserAddress } from '@coinbase/onchainkit/farcaster';
+ import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
 import {TOKEN_ADDRESS,NEXT_PUBLIC_URL} from '../../config';
+import { getFrameMessage } from 'frames.js';
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
-  const body: FrameRequest = await req.json();
-  const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
+  const body = await req.json();
+  const message = await getFrameMessage(body);
 
+console.log("Message : "+JSON.stringify(message));
 
-  if (!isValid) {
-    return new NextResponse('Message not valid', { status: 500 });
-  }
   console.log("Body : "+JSON.stringify(body));
   let contractAddress = body.untrustedData.inputText.split(":")[0];
   let amount = body.untrustedData.inputText.split(":")[1];
   console.log("Contract Address : "+contractAddress);
   console.log("Amount : "+amount);
 
-  const text = message.input || '';
+  const text = message.inputText || '';
   let state = {
     page: 0,
   };
   try {
-    state = JSON.parse(decodeURIComponent(message.state?.serialized));
+    state = JSON.parse(decodeURIComponent(message.state as string));
   } catch (e) {
     console.error(e);
   }
 
   if(body.untrustedData.buttonIndex ==1){
-    let result = encodePacked(['address'], [body.untrustedData.address])
+    let result = encodePacked(['address'], [message.connectedAddress as string])
     const data = encodeFunctionData({
       abi: interchainToken,
       functionName: 'interchainTransfer',
@@ -52,9 +51,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     };
     return NextResponse.json(txData);
   }else{
-
-    let result = encodePacked(['address'], [body.untrustedData.address])
-   console.log("Result : "+result);
+    let result = encodePacked(['address'], [message.connectedAddress as string])
 
     const data = encodeFunctionData({
       abi: interchainToken,

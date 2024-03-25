@@ -1,0 +1,45 @@
+Message : {
+    "buttonIndex": 2,
+    "castId": {
+        "fid": 399712,
+        "hash": "0x0000000000000000000000000000000000000001"
+    },
+    "inputText": "0x73872E228365fEeFf2Da8ca7a12A69ae9C218d4B:100",
+    "requesterFid": 399712,
+    "state": "",
+    "connectedAddress": "0xab8a67743325347aa53bcc66850f8f13df87e3af",
+    "isValid": true,
+    "casterFollowsRequester": true,
+    "requesterFollowsCaster": true,
+    "likedCast": false,
+    "recastedCast": false,
+    "requesterVerifiedAddresses": [
+        "0xab8a67743325347aa53bcc66850f8f13df87e3af"
+    ],
+    "requesterCustodyAddress": "0xcD1DF681702FeC52aCa8fB6e50c11361bCFAdF71",
+    "requesterUserData": {
+        "profileImage": "https://i.imgur.com/rZp4ZQ9.jpg",
+        "displayName": "Shubh",
+        "username": "heyshubh",
+        "bio": "Integration engineer at Push Protocol,loves travel"
+    }
+}
+Body : {
+    "untrustedData": {
+        "fid": 399712,
+        "url": "https://d2bd-150-129-206-132.ngrok-free.app",
+        "messageHash": "0x5145b1aa0e8b5f8023e47a36f3e3abfda7a72db2",
+        "timestamp": 1711394565000,
+        "network": 1,
+        "buttonIndex": 2,
+        "inputText": "0x73872E228365fEeFf2Da8ca7a12A69ae9C218d4B:100",
+        "address": "0xaB8a67743325347Aa53bCC66850f8F13df87e3AF",
+        "castId": {
+            "fid": 399712,
+            "hash": "0x0000000000000000000000000000000000000001"
+        }
+    },
+    "trustedData": {
+        "messageBytes": "0aa201080d10e0b2181885d2cd302001820191010a2b68747470733a2f2f643262642d3135302d3132392d3230362d3133322e6e67726f6b2d667265652e61707010021a1a08e0b21812140000000000000000000000000000000000000001222e3078373338373245323238333635664565466632446138636137613132413639616539433231386434423a3130303a14ab8a67743325347aa53bcc66850f8f13df87e3af12145145b1aa0e8b5f8023e47a36f3e3abfda7a72db21801224068388719114037abff625acc9007b6bc874a9536ceedab49afe668ec583cb6cc46a5eb5b19a639acc1d6da473ddf7188b48357a3e070c9f5d1981c89dde79e0a280132204e2227a9085bdabb484db475210e66d7a652a0395757b8e95bd603d16bfa1d60"
+    }
+}
